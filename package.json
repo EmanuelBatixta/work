@@ -1,0 +1,25 @@
+{
+  "name": "termotec",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Emanuel Jonatas",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch server.js",
+    "start": "node server.js",
+    "swagger": "node ./src/swagger/swagger.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "eslint": "^9.35.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.1",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.23.7"
+  }
+}
