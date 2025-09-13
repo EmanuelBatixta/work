@@ -5,10 +5,10 @@
     "description": "Documetação API Garantias",
     "version": "1.0.0"
   },
-  "host": "localhost:3333",
-  "basePath": "/",
+  "host": "termotec.onrender.com",
+  "basePath": "/v1",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/v1/garantias/": {

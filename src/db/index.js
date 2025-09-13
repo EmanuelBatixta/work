@@ -11,7 +11,6 @@ const main = async () => {
     try {
         db = await mongoose.connect(uri)
         console.log("Conectado a base de dados")
-    
         return db
     } catch (error) {
         console.error("Erro ao se conectar a base de dados:", error)
