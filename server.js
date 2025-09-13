@@ -12,8 +12,8 @@ app.use(express.json());
 app.use(cors())
 
 //routes
-app.use('/v1/garantias', garantiasRoutes)
 app.use('/v1/api-docs', swaggerRoutes)
+app.use('/v1/garantias', garantiasRoutes)
 
 //server 
 app.listen(process.env.PORT, ()=>{
