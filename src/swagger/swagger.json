@@ -6,11 +6,21 @@
     "version": "1.0.0"
   },
   "host": "termotec.onrender.com",
-  "basePath": "/v1",
+  "basePath": "/",
   "schemes": [
     "https"
   ],
   "paths": {
+    "/v1/api-docs/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/v1/garantias/": {
       "post": {
         "description": "",
@@ -93,7 +103,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "data": {
+                "nome": {
+                  "example": "any"
+                },
+                "chaves": {
+                  "example": "any"
+                },
+                "status": {
+                  "example": "any"
+                },
+                "pago": {
                   "example": "any"
                 }
               }
@@ -125,16 +144,6 @@
           },
           "400": {
             "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/v1/api-docs/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
           }
         }
       }

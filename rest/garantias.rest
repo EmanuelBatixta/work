@@ -1,0 +1,30 @@
+###
+GET http://localhost:3333/v1/garantias
+
+###
+GET http://localhost:3333/v1/garantias/68c586665ec28e07008ffdfb
+
+###
+POST http://localhost:3333/v1/garantias/
+Content-Type: "application/json"
+
+{
+  "nome": "any",
+  "chaves": "any",
+  "status": "enviado",
+  "pago": false
+}
+
+###
+PUT http://localhost:3333/v1/garantias/68c592c18d20f120c6a39642
+Content-Type: "application/json"
+
+{
+  "nome": "Roger",
+  "chaves": "3457",
+  "status": "enviado",
+  "pago": false
+}
+
+###
+DELETE http://localhost:3333/v1/garantias/68c586665ec28e07008ffdfb

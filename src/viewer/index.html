@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Inserir Garantia</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    form { max-width: 500px; margin: auto; }
+    label { display: block; margin-top: 1em; }
+    input, select, textarea { width: 100%; padding: 0.5em; margin-top: 0.5em; }
+    button { margin-top: 1.5em; padding: 0.7em 1.5em; }
+  </style>
+</head>
+<body>
+  <h1>Inserir Garantia</h1>
+  <form action="/garantias" method="POST">
+    <label for="nome">Nome da Garantia:</label>
+    <input type="text" id="nome" name="nome" required>
+
+    <label for="chaves">Chaves (separadas por vírgula):</label>
+    <input type="text" id="chaves" name="chaves">
+
+    <label for="status">Status:</label>
+    <select id="status" name="status" required>
+      <option value="pendente">Pendente</option>
+      <option value="enviado">Enviado</option>
+      <option value="aprovado">Aprovado</option>
+      <option value="recusado">Recusado</option>
+    </select>
+
+    <label for="pago">Pago:</label>
+    <select id="pago" name="pago" required>
+      <option value="true">Sim</option>
+      <option value="false">Não</option>
+    </select>
+
+    <button type="submit">Salvar Garantia</button>
+  </form>
+</body>
+</html>

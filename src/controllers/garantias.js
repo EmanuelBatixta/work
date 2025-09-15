@@ -23,7 +23,7 @@ ctrl.getGarantias = async (req, res) => {
 
 ctrl.getGarantiasById = async (req, res) => {
     const { id } = req.params
-    const result = await garantias.getGarantiasById(id)
+    const result = await garantias.getById(id)
     if (result ) {
         res.status(200).json(result)
     } else {
@@ -33,8 +33,8 @@ ctrl.getGarantiasById = async (req, res) => {
 
 ctrl.updateGarantias = async (req, res) => {
     const { id } = req.params
-    const { data } = req.body
-    const result = await garantias.update(id, data)
+    const { nome, chaves, status, pago } = req.body
+    const result = await garantias.update(id, nome, chaves, status, pago)
     if (result) {
         res.status(200).json(result)
     } else {

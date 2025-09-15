@@ -6,7 +6,7 @@ const garantiaSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ['pendente', 'enviado', 'aprovado', 'recusado'],
-    default: 'pendente'
+    default: 'enviado'
   },
   pago: Boolean
 }, { timestamps: true })
@@ -45,8 +45,7 @@ garantia.getById = async (id) => {
 
 garantia.update = async (id, nome, chaves, status, pago) => {
     try{
-        
-        const doc = await model.findByIdAndUpdate(id, {nome, chaves, status, pago})
+        const doc = await model.findByIdAndUpdate(id, {nome, chaves, status, pago}, {new: true})
         return doc
     } catch(error) {
         throw new Error("Erro ao atualizar garantia:" + error.message);
