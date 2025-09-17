@@ -29,7 +29,7 @@ router.get(
 router.put(
   '/:id',
   /* #swagger.tags = ['User']
-     #swagger.description = 'Atualiza uma garantia pelo ID'
+     #swagger.description = ''
   */
   ctrl.update,
 )
@@ -37,7 +37,7 @@ router.put(
 router.delete(
   '/',
   /* #swagger.tags = ['User']
-     #swagger.description = 'Remove uma garantia'
+     #swagger.description = ''
   */
   ctrl.delete,
 )
