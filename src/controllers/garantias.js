@@ -2,54 +2,69 @@ import garantias from '../models/garantias.js'
 
 const ctrl = {}
 
-ctrl.createGarantia = async (req, res) =>{
-    const { nome, chaves, status, pago } = req.body
-    const result = await garantias.create(nome, chaves, status, pago)
-    if (result) {
-        res.status(201).json(result)
-    } else {
-        res.status(400).json({ error: "Erro ao criar garantia" })
-    }
+ctrl.createGarantia = async (req, res) => {
+  const { fname, lnane, keys, item, status, observations, nf } = req.body
+  const result = await garantias.create({
+    fname,
+    lnane,
+    keys,
+    item,
+    status,
+    observations,
+    nf,
+  })
+  if (result) {
+    res.status(201).json(result)
+  } else {
+    res.status(400).json({ error: 'Error to create warranty' })
+  }
 }
 
 ctrl.getGarantias = async (req, res) => {
-    const result = await garantias.getAll()
-    if (result) {
-        res.status(200).json(result)
-    } else {
-        res.status(400).json({ error: "Erro ao buscar garantias" })
-    }
+  const result = await garantias.find()
+  if (result) {
+    res.status(200).json(result)
+  } else {
+    res.status(400).json({ error: 'Error searching warranty' })
+  }
 }
 
 ctrl.getGarantiasById = async (req, res) => {
-    const { id } = req.params
-    const result = await garantias.getById(id)
-    if (result ) {
-        res.status(200).json(result)
-    } else {
-        res.status(404).json({ error: "Garantia não encontrada" })
-    }
+  const { id } = req.params
+  const result = await garantias.findById(id)
+  if (result) {
+    res.status(200).json(result)
+  } else {
+    res.status(404).json({ error: 'Warranty not found' })
+  }
 }
 
 ctrl.updateGarantias = async (req, res) => {
-    const { id } = req.params
-    const { nome, chaves, status, pago } = req.body
-    const result = await garantias.update(id, nome, chaves, status, pago)
-    if (result) {
-        res.status(200).json(result)
-    } else {
-        res.status(400).json({ error: "Erro ao atualizar garantia" })
-    }
+  const { id } = req.params
+  const { lnane, keys, item, status, observations, nf } = req.body
+  const result = await garantias.findByIdAndUpdate(id, {
+    lnane,
+    keys,
+    item,
+    status,
+    observations,
+    nf,
+  })
+  if (result) {
+    res.status(201).json(result)
+  } else {
+    res.status(400).json({ error: 'Error updating warranty' })
+  }
 }
 
 ctrl.deleteGarantias = async (req, res) => {
-    const { id } = req.params
-    const result = await garantias.delete(id)
-    if (result) {
-        res.status(200).json({ message: "Garantia deletada com sucesso" })
-    } else {
-        res.status(400).json({ error: "Erro ao deletar garantia" })
-    }
+  const { id } = req.params
+  const result = await garantias.findByIdAndDelete(id)
+  if (result) {
+    res.status(204).json({ message: 'Warranty deleted' })
+  } else {
+    res.status(400).json({ error: 'Error deleting warranty' })
+  }
 }
 
 export default ctrl

@@ -1,17 +1,31 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "API",
     "description": "Documetação API Garantias",
     "version": "1.0.0"
   },
-  "host": "termotec.onrender.com",
-  "basePath": "/",
-  "schemes": [
-    "https"
+  "servers": [
+    {
+      "url": "http://localhost:3333"
+    },
+    {
+      "url": "https://termotec.onreder.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Docs"
+    },
+    {
+      "name": "User"
+    },
+    {
+      "name": "Warranty"
+    }
   ],
   "paths": {
-    "/v1/api-docs/": {
+    "/": {
       "get": {
         "description": "",
         "responses": {
@@ -21,32 +35,25 @@
         }
       }
     },
-    "/v1/garantias/": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nome": {
-                  "example": "any"
-                },
-                "chaves": {
-                  "example": "any"
-                },
-                "status": {
-                  "example": "any"
-                },
-                "pago": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+    "/v1/api-docs/": {
+      "get": {
+        "tags": [
+          "Warranty"
         ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/v1/warranty/": {
+      "post": {
+        "tags": [
+          "Warranty"
+        ],
+        "description": "",
         "responses": {
           "201": {
             "description": "Created"
@@ -54,9 +61,44 @@
           "400": {
             "description": "Bad Request"
           }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fname": {
+                    "example": "any"
+                  },
+                  "lnane": {
+                    "example": "any"
+                  },
+                  "keys": {
+                    "example": "any"
+                  },
+                  "item": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "observations": {
+                    "example": "any"
+                  },
+                  "nf": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "get": {
+        "tags": [
+          "Warranty"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -68,15 +110,20 @@
         }
       }
     },
-    "/v1/garantias/{id}": {
+    "/v1/warranty/{id}": {
       "get": {
+        "tags": [
+          "Warranty"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -89,33 +136,166 @@
         }
       },
       "put": {
+        "tags": [
+          "Warranty"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "nome": {
-                  "example": "any"
-                },
-                "chaves": {
-                  "example": "any"
-                },
-                "status": {
-                  "example": "any"
-                },
-                "pago": {
-                  "example": "any"
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "lnane": {
+                    "example": "any"
+                  },
+                  "keys": {
+                    "example": "any"
+                  },
+                  "item": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "observations": {
+                    "example": "any"
+                  },
+                  "nf": {
+                    "example": "any"
+                  }
                 }
               }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Warranty"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/v1/user/": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fname": {
+                    "example": "any"
+                  },
+                  "lname": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "Remove uma garantia",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/v1/user/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -128,22 +308,50 @@
           }
         }
       },
-      "delete": {
-        "description": "",
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Atualiza uma garantia pelo ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
           },
           "400": {
             "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fname": {
+                    "example": "any"
+                  },
+                  "lname": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
