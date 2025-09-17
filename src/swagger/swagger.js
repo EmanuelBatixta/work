@@ -22,7 +22,7 @@ const doc = {
       url: 'http://localhost:3333',
     },
     {
-      url: 'https://termotec.onreder.com',
+      url: 'https://termotec.onrender.com',
     },
   ],
 }

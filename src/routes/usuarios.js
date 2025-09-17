@@ -35,7 +35,7 @@ router.put(
 )
 
 router.delete(
-  '/',
+  '/:id',
   /* #swagger.tags = ['User']
      #swagger.description = ''
   */
