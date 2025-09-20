@@ -17,8 +17,9 @@ const router = Router()
 router.use('/', swaggerUi.serve)
 router.get(
   '/',
-  /* #swagger.tags = ['Docs']
-     #swagger.description = ''
+  /* 
+    #swagger.tags = ['Docs']
+    #swagger.description = ''
   */
   swaggerUi.setup(swaggerDocument),
 )

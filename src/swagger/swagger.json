@@ -25,21 +25,8 @@
     }
   ],
   "paths": {
-    "/": {
+    "/v1/": {
       "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/v1/api-docs/": {
-      "get": {
-        "tags": [
-          "Warranty"
-        ],
         "description": "",
         "responses": {
           "default": {
@@ -53,7 +40,7 @@
         "tags": [
           "Warranty"
         ],
-        "description": "",
+        "description": "Create a new warranty record. Requires authentication via JWT cookie.",
         "responses": {
           "201": {
             "description": "Created"
@@ -62,6 +49,11 @@
             "description": "Bad Request"
           }
         },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -85,9 +77,6 @@
                   },
                   "observations": {
                     "example": "any"
-                  },
-                  "nf": {
-                    "example": "any"
                   }
                 }
               }
@@ -99,7 +88,7 @@
         "tags": [
           "Warranty"
         ],
-        "description": "",
+        "description": "Retrieve all warranty records. Requires authentication via JWT cookie.",
         "responses": {
           "200": {
             "description": "OK"
@@ -107,7 +96,12 @@
           "400": {
             "description": "Bad Request"
           }
-        }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
       }
     },
     "/v1/warranty/{id}": {
@@ -115,7 +109,7 @@
         "tags": [
           "Warranty"
         ],
-        "description": "",
+        "description": "Retrieve a warranty record by its ID. Requires authentication via JWT cookie.",
         "parameters": [
           {
             "name": "id",
@@ -133,13 +127,18 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
       },
       "put": {
         "tags": [
           "Warranty"
         ],
-        "description": "",
+        "description": "Update a warranty record by its ID. Requires authentication via JWT cookie.",
         "parameters": [
           {
             "name": "id",
@@ -158,6 +157,11 @@
             "description": "Bad Request"
           }
         },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -178,9 +182,6 @@
                   },
                   "observations": {
                     "example": "any"
-                  },
-                  "nf": {
-                    "example": "any"
                   }
                 }
               }
@@ -192,7 +193,7 @@
         "tags": [
           "Warranty"
         ],
-        "description": "",
+        "description": "Delete a warranty record by its ID. Requires authentication via JWT cookie.",
         "parameters": [
           {
             "name": "id",
@@ -210,7 +211,12 @@
           "400": {
             "description": "Bad Request"
           }
-        }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
       }
     },
     "/v1/user/": {
@@ -227,6 +233,7 @@
             "description": "Bad Request"
           }
         },
+        "security": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -263,24 +270,12 @@
           "400": {
             "description": "Bad Request"
           }
-        }
-      },
-      "delete": {
-        "tags": [
-          "User"
-        ],
-        "description": "Remove uma garantia",
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
+        },
+        "security": [
+          {
+            "cookieAuth": []
           }
-        }
+        ]
       }
     },
     "/v1/user/{id}": {
@@ -306,13 +301,18 @@
           "400": {
             "description": "Bad Request"
           }
-        }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
       },
       "put": {
         "tags": [
           "User"
         ],
-        "description": "Atualiza uma garantia pelo ID",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -331,6 +331,14 @@
             "description": "Bad Request"
           }
         },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "passwordAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -352,6 +360,54 @@
                 }
               }
             }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "passwordAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/api-docs/": {
+      "get": {
+        "tags": [
+          "Docs"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }

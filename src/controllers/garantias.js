@@ -1,9 +1,9 @@
-import garantias from '../models/garantias.js'
+import garantias from '../models/warranty.js'
 
 const ctrl = {}
 
 ctrl.createGarantia = async (req, res) => {
-  const { fname, lnane, keys, item, status, observations, nf } = req.body
+  const { fname, lnane, keys, item, status, observations } = req.body
   const result = await garantias.create({
     fname,
     lnane,
@@ -11,7 +11,6 @@ ctrl.createGarantia = async (req, res) => {
     item,
     status,
     observations,
-    nf,
   })
   if (result) {
     res.status(201).json(result)
@@ -41,14 +40,13 @@ ctrl.getGarantiasById = async (req, res) => {
 
 ctrl.updateGarantias = async (req, res) => {
   const { id } = req.params
-  const { lnane, keys, item, status, observations, nf } = req.body
+  const { lnane, keys, item, status, observations } = req.body
   const result = await garantias.findByIdAndUpdate(id, {
     lnane,
     keys,
     item,
     status,
     observations,
-    nf,
   })
   if (result) {
     res.status(201).json(result)
@@ -58,7 +56,7 @@ ctrl.updateGarantias = async (req, res) => {
 }
 
 ctrl.deleteGarantias = async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params.id
   const result = await garantias.findByIdAndDelete(id)
   if (result) {
     res.status(204).json({ message: 'Warranty deleted' })

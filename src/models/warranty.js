@@ -12,11 +12,12 @@ const garantiaSchema = new mongoose.Schema(
       default: 'sent',
     },
     observations: String,
-    nf: Number,
+    createdBy: String,
+    updatedBy: String,
   },
   { timestamps: true },
 )
 
-const model = mongoose.model('Garantia', garantiaSchema)
+const model = mongoose.model('Garantia', garantiaSchema, 'TERMOTEC')
 
 export default model
