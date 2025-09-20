@@ -1,7 +1,7 @@
 import ctrl from '../controllers/garantias.js'
 import { Router } from 'express'
 import validate from '../utils/warranty-validator.js'
-//import util from '../utils/index.js'
+import util from '../utils/index.js'
 
 const router = Router()
 
@@ -18,7 +18,7 @@ router.post(
   */
   validate.rules(),
   validate.garData,
-  ctrl.createGarantia,
+  util.handleError(ctrl.createGarantia),
 )
 // Get all warranties - Requires JWT authentication via cookie
 router.get(
@@ -27,7 +27,7 @@ router.get(
      #swagger.description = 'Retrieve all warranty records. Requires authentication via JWT cookie.'
      #swagger.security = [{"cookieAuth": []}]
   */
-  ctrl.getGarantias,
+  util.handleError(ctrl.getGarantias),
 )
 // Get warranty by ID - Requires JWT authentication via cookie
 router.get(
@@ -36,7 +36,7 @@ router.get(
      #swagger.description = 'Retrieve a warranty record by its ID. Requires authentication via JWT cookie.'
      #swagger.security = [{"cookieAuth": []}]
   */
-  ctrl.getGarantiasById,
+  util.handleError(ctrl.getGarantiasById),
 )
 // Update warranty by ID - Requires JWT authentication via cookie
 router.put(
@@ -47,7 +47,7 @@ router.put(
   */
   validate.rules(),
   validate.garData,
-  ctrl.updateGarantias,
+  util.handleError(ctrl.updateGarantias),
 )
 // Delete warranty by ID - Requires JWT authentication via cookie
 router.delete(
@@ -56,7 +56,7 @@ router.delete(
      #swagger.description = 'Delete a warranty record by its ID. Requires authentication via JWT cookie.'
      #swagger.security = [{"cookieAuth": []}]
   */
-  ctrl.deleteGarantias,
+  util.handleError(ctrl.deleteGarantias),
 )
 
 export default router
