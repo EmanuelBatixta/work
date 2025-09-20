@@ -27,16 +27,6 @@ router.get(
   util.handleError(ctrl.get),
 )
 
-// // Logout user - Requires authentication (JWT cookie)
-// router.get(
-//   '/logout',
-//   /* #swagger.tags = ['User']
-//      #swagger.description = 'Logout a user'
-//      #swagger.security = [{"cookieAuth": []}]
-//   */
-//   ctrl.logout,
-// )
-
 // Get user by ID - No authentication required
 router.get(
   '/:id',

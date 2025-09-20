@@ -27,6 +27,12 @@ app
 //routes
 app.use('/v1/', index)
 
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).json({ error: err.message })
+})
+
 //server
 app.listen(process.env.PORT, () => {
   main()

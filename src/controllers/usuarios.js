@@ -15,7 +15,12 @@ ctrl.create = async (req, res) => {
       .send({ message: 'error creating your account:' + error.message })
   }
 
-  const result = await usuarios.create({ fname, lname, email, hashedPassword })
+  const result = await usuarios.create({
+    fname,
+    lname,
+    email,
+    password: hashedPassword,
+  })
 
   if (result) {
     res.status(201).send(result)
@@ -35,7 +40,7 @@ ctrl.get = async (req, res) => {
 }
 
 ctrl.getId = async (req, res) => {
-  const id = req.params
+  const { id } = req.params
   const result = await usuarios.findById(id)
   if (result) {
     res.status(200).send(result)
@@ -45,7 +50,7 @@ ctrl.getId = async (req, res) => {
 }
 
 ctrl.update = async (req, res) => {
-  const id = req.params
+  const { id } = req.params
   const { fname, lname, email, password } = req.body
   const existEmail = await usuarios.find({ email: email })
   const compare = bcrypt.compareSync(password, existEmail.password)
@@ -66,8 +71,8 @@ ctrl.update = async (req, res) => {
 }
 
 ctrl.delete = async (req, res) => {
-  const id = req.params
-  const password = req.body
+  const { id } = req.params
+  const { password } = req.body
   const user = await usuarios.find({ id: id })
   const compare = bcrypt.compareSync(password, user.password)
   delete user.password
