@@ -1,13 +1,12 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
-const UserSchema = new mongoose.Schema({
-  googleId: String,
-  displayName: String,
-  firstName: String,
-  lastName: String,
-  image: String,
-  email: String,
-})
+const UserSchema = new mongoose.Schema(
+  {
+    googleId: String,
+    userName: String,
+  },
+  { timestamps: true },
+)
 
 const user = mongoose.model('User', UserSchema)
 

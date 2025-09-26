@@ -9,22 +9,24 @@ POST http://localhost:3333/v1/garantias/
 Content-Type: "application/json"
 
 {
-  "nome": "any",
-  "chaves": "any",
-  "status": "enviado",
-  "pago": false
+  "fname": "Marcelo",
+  "lname": "Andrade",
+  "keys": "3456, 6598",
+  "item": "MC1500TF15",
+  "status": "sent",
+  "observations": "any"
 }
-
 ###
 PUT http://localhost:3333/v1/garantias/68c592c18d20f120c6a39642
 Content-Type: "application/json"
 
 {
-  "nome": "Roger",
-  "chaves": "3457",
-  "status": "enviado",
-  "pago": false
+  "fname": "Marcelo",
+  "lnane": "Andrade",
+  "keys": "3456, 6598",
+  "item": "MC1500TF15",
+  "status": "sent",
+  "observations": "any"
 }
-
 ###
 DELETE http://localhost:3333/v1/garantias/68c586665ec28e07008ffdfb

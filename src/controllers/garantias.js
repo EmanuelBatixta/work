@@ -3,10 +3,10 @@ import garantias from '../models/warranty.js'
 const ctrl = {}
 
 ctrl.createGarantia = async (req, res) => {
-  const { fname, lnane, keys, item, status, observations } = req.body
+  const { fname, lname, keys, item, status, observations } = req.body
   const result = await garantias.create({
     fname,
-    lnane,
+    lname,
     keys,
     item,
     status,
@@ -24,7 +24,7 @@ ctrl.getGarantias = async (req, res) => {
   if (result) {
     res.status(200).json(result)
   } else {
-    res.status(400).json({ error: 'Error searching warranty' })
+    res.status(400).json({ error: 'No data found' })
   }
 }
 
@@ -40,9 +40,10 @@ ctrl.getGarantiasById = async (req, res) => {
 
 ctrl.updateGarantias = async (req, res) => {
   const { id } = req.params
-  const { lnane, keys, item, status, observations } = req.body
+  const { fname, lname, keys, item, status, observations } = req.body
   const result = await garantias.findByIdAndUpdate(id, {
-    lnane,
+    fname,
+    lname,
     keys,
     item,
     status,
@@ -51,17 +52,17 @@ ctrl.updateGarantias = async (req, res) => {
   if (result) {
     res.status(201).json(result)
   } else {
-    res.status(400).json({ error: 'Error updating warranty' })
+    res.status(400).json({ error: 'Error updating warranty', message: result })
   }
 }
 
 ctrl.deleteGarantias = async (req, res) => {
-  const { id } = req.params.id
+  const { id } = req.params
   const result = await garantias.findByIdAndDelete(id)
   if (result) {
     res.status(204).json({ message: 'Warranty deleted' })
   } else {
-    res.status(400).json({ error: 'Error deleting warranty' })
+    res.status(400).json({ error: 'Error deleting warranty', message: result })
   }
 }
 

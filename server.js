@@ -4,7 +4,9 @@ import main from './src/db/index.js'
 import index from './src/routes/index.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
-//import session from 'express-session'
+import session from 'express-session'
+import passport from 'passport'
+//import passportSetup from './src/config/passport.js'
 
 dotenv.config()
 
@@ -14,15 +16,22 @@ app
   .use(express.urlencoded({ extended: true }))
   .use(cors())
   .use(cookieParser())
-/*
   .use(
     session({
+      name: 'OrbiCRM-session',
       secret: process.env.SESSION_SECRET,
-      resave: false,
-      saveUninitialized: false,
+      resave: true,
+      saveUninitialized: true,
+      cookie: {
+        maxAge: 24 * 60 * 60 * 1000,
+        keys: [process.env.ACCESS_TOKEN_SECRET],
+      },
     }),
   )
-*/
+  .use(passport.initialize())
+  .use(passport.session())
+
+app.set('view engine', 'ejs')
 
 //routes
 app.use('/v1/', index)

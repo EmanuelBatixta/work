@@ -1,8 +1,9 @@
 import { Router } from 'express'
 import garantiasRoutes from './garantias.js'
 import swaggerRoutes from './swagger.js'
-import userRoutes from './usuarios.js'
-//import util from '../utils/index.js'
+//import userRoutes from './usuarios.js'
+import authRoutes from './auth.js'
+import util from '../utils/index.js'
 
 const main = Router()
 
@@ -12,14 +13,19 @@ main.get('/', async (req, res) => {
   })
 })
 
-//main.use(util.verifyToken)
+/*Docs*/
+main.use('/api-docs', swaggerRoutes)
 
+main.use(util.verifyToken)
+
+/*Auth*/
+main.use('/auth', authRoutes)
+
+main.use(util.requireAuth)
 /*Warranty*/
 main.use('/warranty', garantiasRoutes)
 
 /*User*/
-main.use('/user', userRoutes)
+//main.use('/user', userRoutes)
 
-/*Docs*/
-main.use('/api-docs', swaggerRoutes)
 export default main

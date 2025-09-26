@@ -18,7 +18,7 @@ router.post(
   */
   validate.rules(),
   validate.garData,
-  util.handleError(ctrl.createGarantia),
+  ctrl.createGarantia,
 )
 // Get all warranties - Requires JWT authentication via cookie
 router.get(
@@ -47,7 +47,7 @@ router.put(
   */
   validate.rules(),
   validate.garData,
-  util.handleError(ctrl.updateGarantias),
+  ctrl.updateGarantias,
 )
 // Delete warranty by ID - Requires JWT authentication via cookie
 router.delete(

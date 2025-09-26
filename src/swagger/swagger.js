@@ -20,9 +20,11 @@ const doc = {
   servers: [
     {
       url: 'http://localhost:3333',
+      description: 'Local server',
     },
     {
       url: 'https://termotec.onrender.com',
+      description: 'Production server',
     },
   ],
 }

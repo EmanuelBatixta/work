@@ -46,6 +46,12 @@ util.requireAuth = (req, res, next) => {
   )
 }
 
+util.authCheck = (req, res, next) => {
+  if (req.user) {
+    res.redirect('/dashboard')
+  }
+}
+
 util.handleError = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next)
 

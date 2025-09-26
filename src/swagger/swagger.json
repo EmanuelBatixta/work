@@ -7,10 +7,12 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3333"
+      "url": "http://localhost:3333",
+      "description": "Local server"
     },
     {
-      "url": "https://termotec.onrender.com"
+      "url": "https://termotec.onrender.com",
+      "description": "Production server"
     }
   ],
   "tags": [
@@ -35,15 +37,31 @@
         }
       }
     },
-    "/v1/warranty/": {
-      "post": {
+    "/v1/api-docs/": {
+      "get": {
         "tags": [
-          "Warranty"
+          "Docs"
         ],
-        "description": "Create a new warranty record. Requires authentication via JWT cookie.",
+        "description": "",
         "responses": {
-          "400": {
-            "description": "Bad Request"
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/v1/auth/login": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -51,6 +69,90 @@
             "cookieAuth": []
           }
         ]
+      }
+    },
+    "/v1/auth/logout": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/auth/google": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/v1/warranty/": {
+      "post": {
+        "tags": [
+          "Warranty"
+        ],
+        "description": "Create a new warranty record. Requires authentication via JWT cookie.",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fname": {
+                    "example": "any"
+                  },
+                  "lname": {
+                    "example": "any"
+                  },
+                  "keys": {
+                    "example": "any"
+                  },
+                  "item": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "observations": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "get": {
         "tags": [
@@ -58,8 +160,8 @@
         ],
         "description": "Retrieve all warranty records. Requires authentication via JWT cookie.",
         "responses": {
-          "default": {
-            "description": ""
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -86,8 +188,8 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -112,15 +214,50 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
           {
             "cookieAuth": []
           }
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fname": {
+                    "example": "any"
+                  },
+                  "lname": {
+                    "example": "any"
+                  },
+                  "keys": {
+                    "example": "any"
+                  },
+                  "item": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "observations": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -138,8 +275,8 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -147,135 +284,6 @@
             "cookieAuth": []
           }
         ]
-      }
-    },
-    "/v1/user/": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "description": "",
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": []
-      },
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ]
-      }
-    },
-    "/v1/user/{id}": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "cookieAuth": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "User"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "cookieAuth": []
-          },
-          {
-            "passwordAuth": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "User"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "cookieAuth": []
-          },
-          {
-            "passwordAuth": []
-          }
-        ]
-      }
-    },
-    "/v1/api-docs/": {
-      "get": {
-        "tags": [
-          "Docs"
-        ],
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
       }
     }
   }
