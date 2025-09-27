@@ -18,7 +18,7 @@ app
   .use(cookieParser())
   .use(
     session({
-      name: 'OrbiCRM-session',
+      name: 'OrbiCRMs',
       secret: process.env.SESSION_SECRET,
       resave: true,
       saveUninitialized: true,
@@ -46,6 +46,6 @@ app.use((err, req, res, next) => {
 app.listen(process.env.PORT, () => {
   main()
   console.log(
-    `🔥 Server running on http://localhost:${process.env.PORT}/v1/api-docs 🔥`,
+    `🔥 Server running on http://localhost:${process.env.PORT}/v1/auth/google 🔥`,
   )
 })

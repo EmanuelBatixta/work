@@ -5,15 +5,14 @@ const garantiaSchema = new mongoose.Schema(
     fname: String,
     lname: String,
     keys: [Number], // array de strings, pode estar vazio
-    item: String,
+    item: [String],
     status: {
       type: String,
       enum: ['pending', 'sent', 'approved', 'rejected'],
       default: 'sent',
     },
     observations: String,
-    createdBy: String,
-    updatedBy: String,
+    sales: Number,
   },
   { timestamps: true },
 )

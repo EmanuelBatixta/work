@@ -7,25 +7,31 @@ import util from '../utils/index.js'
 
 const main = Router()
 
+// Home route - renders the main index page
 main.get('/', async (req, res) => {
   res.render('index.ejs', {
     message: 'Esta rodando',
   })
 })
 
-/*Docs*/
-main.use('/api-docs', swaggerRoutes)
-
+// Middleware to verify JWT Token (applies to all routes below)
 main.use(util.verifyToken)
 
-/*Auth*/
+// Authentication routes (login, logout, OAuth, etc.)
 main.use('/auth', authRoutes)
 
-main.use(util.requireAuth)
-/*Warranty*/
-main.use('/warranty', garantiasRoutes)
+/* ******************
+ * Protected Routes (require authentication)
+ * *****************/
 
-/*User*/
-//main.use('/user', userRoutes)
+// Middleware to require authentication for all routes below
+main.use(util.requireAuth)
+
+// Swagger API documentation route (protected)
+main.use('/api-docs', swaggerRoutes)
+
+main.use(util.authCheck)
+// Warranty routes (protected)
+main.use('/warranty', garantiasRoutes)
 
 export default main

@@ -15,33 +15,9 @@
       "description": "Production server"
     }
   ],
-  "tags": [
-    {
-      "name": "Docs"
-    },
-    {
-      "name": "User"
-    },
-    {
-      "name": "Warranty"
-    }
-  ],
   "paths": {
     "/v1/": {
       "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/v1/api-docs/": {
-      "get": {
-        "tags": [
-          "Docs"
-        ],
         "description": "",
         "responses": {
           "default": {
@@ -89,10 +65,10 @@
         ]
       }
     },
-    "/v1/auth/google": {
+    "/v1/api-docs/": {
       "get": {
         "tags": [
-          "Auth"
+          "Docs"
         ],
         "description": "",
         "responses": {
@@ -117,6 +93,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "security": [
@@ -146,6 +125,9 @@
                     "example": "any"
                   },
                   "observations": {
+                    "example": "any"
+                  },
+                  "sales": {
                     "example": "any"
                   }
                 }
@@ -222,6 +204,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "security": [
@@ -251,6 +236,9 @@
                     "example": "any"
                   },
                   "observations": {
+                    "example": "any"
+                  },
+                  "sales": {
                     "example": "any"
                   }
                 }
@@ -284,6 +272,151 @@
             "cookieAuth": []
           }
         ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Warranty": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "required": {
+            "type": "array",
+            "example": [
+              "fname",
+              "lname",
+              "sales",
+              "item"
+            ],
+            "items": {
+              "type": "string"
+            }
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "fname": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "Jorge"
+                  }
+                }
+              },
+              "lname": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "Smith"
+                  }
+                }
+              },
+              "keys": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "array"
+                  },
+                  "example": {
+                    "type": "array",
+                    "example": [
+                      123,
+                      456
+                    ],
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "item": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "array"
+                  },
+                  "example": {
+                    "type": "array",
+                    "example": [
+                      "MC1500TF15",
+                      "MKP300AP"
+                    ],
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "status": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "enum": {
+                    "type": "array",
+                    "example": [
+                      "pending",
+                      "sent",
+                      "approved",
+                      "rejected"
+                    ],
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "pending"
+                  }
+                }
+              },
+              "observations": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "example": {
+                    "type": "string",
+                    "example": "any"
+                  }
+                }
+              },
+              "sales": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "number"
+                  },
+                  "example": {
+                    "type": "number",
+                    "example": 3200
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

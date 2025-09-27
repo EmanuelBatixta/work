@@ -5,18 +5,6 @@ const doc = {
     title: 'API',
     description: 'Documetação API Garantias',
   },
-  tags: [
-    // by default: empty Array
-    {
-      name: 'Docs',
-    },
-    {
-      name: 'User', // Tag name
-    },
-    {
-      name: 'Warranty',
-    },
-  ],
   servers: [
     {
       url: 'http://localhost:3333',
@@ -27,6 +15,27 @@ const doc = {
       description: 'Production server',
     },
   ],
+  components: {
+    schemas: {
+      Warranty: {
+        type: 'object',
+        required: ['fname', 'lname', 'sales', 'item'],
+        properties: {
+          fname: { type: 'string', example: 'Jorge' },
+          lname: { type: 'string', example: 'Smith' },
+          keys: { type: 'array', example: [123, 456] },
+          item: { type: 'array', example: ['MC1500TF15', 'MKP300AP'] },
+          status: {
+            type: 'string',
+            enum: ['pending', 'sent', 'approved', 'rejected'],
+            example: 'pending',
+          },
+          observations: { type: 'string', example: 'any' },
+          sales: { type: 'number', example: 3200 },
+        },
+      },
+    },
+  },
 }
 
 const outputFile = './swagger.json'
