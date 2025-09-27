@@ -85,8 +85,34 @@
           {
             "name": "body",
             "in": "body",
-            "required": true,
             "schema": {
+              "type": "object",
+              "properties": {
+                "fname": {
+                  "example": "any"
+                },
+                "lname": {
+                  "example": "any"
+                },
+                "keys": {
+                  "example": "any"
+                },
+                "item": {
+                  "example": "any"
+                },
+                "status": {
+                  "example": "any"
+                },
+                "observations": {
+                  "example": "any"
+                },
+                "sales": {
+                  "example": "any"
+                }
+              }
+            },
+            "required": true,
+            "example": {
               "$ref": "#/components/schemas/Warranty"
             }
           }

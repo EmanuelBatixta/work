@@ -15,11 +15,6 @@ router.post(
   /* #swagger.tags = ['Warranty']
      #swagger.description = 'Create a new warranty record. Requires authentication via JWT cookie.'
      #swagger.security = [{"cookieAuth": []}]
-     #swagger.parameters['body'] = {
-      in: 'body',
-      required: true,
-      schema: { $ref: '#/components/schemas/Warranty' }
-    }
   */
   validate.rules(),
   validate.garData,
@@ -49,11 +44,6 @@ router.put(
   /* #swagger.tags = ['Warranty']
      #swagger.description = 'Update a warranty record by its ID. Requires authentication via JWT cookie.'
      #swagger.security = [{"cookieAuth": []}]
-     #swagger.parameters['body'] = {
-      in: 'body',
-      required: true,
-      schema: { $ref: '#/components/schemas/Warranty' }
-    }
   */
   validate.rules(),
   validate.garData,
