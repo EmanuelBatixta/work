@@ -1,6 +1,7 @@
 // Import necessary modules
 import { Router } from 'express'
 import passport from 'passport'
+import jwt from 'jsonwebtoken'
 // Import passport configuration (Google OAuth setup)
 // eslint-disable-next-line no-unused-vars
 import passportSetup from '../config/passport.js'
@@ -46,10 +47,19 @@ router.get(
   */
   passport.authenticate('google', {
     failureRedirect: '/v1/auth/login',
-    successRedirect: '/v1/api-docs',
   }),
   (req, res) => {
-    res.send('you reached the callback URI')
+    console.log(req.user.googleId)
+    const payload = { user: req.user }
+    const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: '1d',
+    })
+    res.cookie('OrbiJWT', token, {
+      httpOnly: true,
+      secure: process.env.ENV === 'development' ? false : true,
+      maxAge: 24 * 60 * 60 * 1000,
+    })
+    res.redirect('/v1/api-docs')
   },
 )
 

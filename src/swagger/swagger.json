@@ -35,9 +35,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         },
         "security": [
@@ -54,8 +51,8 @@
         ],
         "description": "",
         "responses": {
-          "401": {
-            "description": "Unauthorized"
+          "default": {
+            "description": ""
           }
         },
         "security": [
@@ -72,8 +69,8 @@
         ],
         "description": "",
         "responses": {
-          "401": {
-            "description": "Unauthorized"
+          "default": {
+            "description": ""
           }
         }
       }
@@ -84,15 +81,22 @@
           "Warranty"
         ],
         "description": "Create a new warranty record. Requires authentication via JWT cookie.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Warranty"
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
           },
           "400": {
             "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -142,8 +146,8 @@
         ],
         "description": "Retrieve all warranty records. Requires authentication via JWT cookie.",
         "responses": {
-          "401": {
-            "description": "Unauthorized"
+          "default": {
+            "description": ""
           }
         },
         "security": [
@@ -170,8 +174,8 @@
           }
         ],
         "responses": {
-          "401": {
-            "description": "Unauthorized"
+          "default": {
+            "description": ""
           }
         },
         "security": [
@@ -193,6 +197,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Warranty"
+            }
           }
         ],
         "responses": {
@@ -201,9 +213,6 @@
           },
           "400": {
             "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -263,8 +272,8 @@
           }
         ],
         "responses": {
-          "401": {
-            "description": "Unauthorized"
+          "default": {
+            "description": ""
           }
         },
         "security": [
@@ -289,8 +298,9 @@
             "example": [
               "fname",
               "lname",
-              "sales",
-              "item"
+              "item",
+              "status",
+              "sales"
             ],
             "items": {
               "type": "string"
@@ -397,7 +407,7 @@
                   },
                   "example": {
                     "type": "string",
-                    "example": "any"
+                    "example": "Is broken"
                   }
                 }
               },

@@ -15,7 +15,7 @@ main.get('/', async (req, res) => {
 })
 
 // Middleware to verify JWT Token (applies to all routes below)
-main.use(util.verifyToken)
+// main.use(util.verifyToken)
 
 // Authentication routes (login, logout, OAuth, etc.)
 main.use('/auth', authRoutes)
@@ -25,12 +25,12 @@ main.use('/auth', authRoutes)
  * *****************/
 
 // Middleware to require authentication for all routes below
-main.use(util.requireAuth)
+// main.use(util.requireAuth)
 
 // Swagger API documentation route (protected)
 main.use('/api-docs', swaggerRoutes)
 
-main.use(util.authCheck)
+// main.use(util.authCheck)
 // Warranty routes (protected)
 main.use('/warranty', garantiasRoutes)
 

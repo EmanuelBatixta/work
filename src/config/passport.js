@@ -3,12 +3,12 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
 import user from '../models/user.js'
 
 passport.serializeUser((user, done) => {
-  done(null, user.id)
+  done(null, user)
 })
 
 passport.deserializeUser((id, done) => {
   user.findById(id).then((user) => {
-    done(null, user.id)
+    done(null, user)
   })
 })
 

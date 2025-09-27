@@ -13,7 +13,7 @@ process.env.ENV == 'development'
 */
 swaggerDocument = require('../swagger/swagger.json')
 const router = Router()
-//#swagger.tags = ['docs's])
+//#swagger.tags = ['Docs']
 router.use('/', swaggerUi.serve)
 router.get(
   '/',

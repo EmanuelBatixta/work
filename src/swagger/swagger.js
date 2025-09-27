@@ -19,7 +19,7 @@ const doc = {
     schemas: {
       Warranty: {
         type: 'object',
-        required: ['fname', 'lname', 'sales', 'item'],
+        required: ['fname', 'lname', 'item', 'status', 'sales'],
         properties: {
           fname: { type: 'string', example: 'Jorge' },
           lname: { type: 'string', example: 'Smith' },
@@ -30,7 +30,7 @@ const doc = {
             enum: ['pending', 'sent', 'approved', 'rejected'],
             example: 'pending',
           },
-          observations: { type: 'string', example: 'any' },
+          observations: { type: 'string', example: 'Is broken' },
           sales: { type: 'number', example: 3200 },
         },
       },

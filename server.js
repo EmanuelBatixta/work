@@ -14,17 +14,23 @@ const app = express()
 app
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
-  .use(cors())
+  .use(
+    cors({
+      credentials: true,
+    }),
+  )
   .use(cookieParser())
   .use(
     session({
-      name: 'OrbiCRMs',
+      name: 'OrbiCRM',
       secret: process.env.SESSION_SECRET,
       resave: true,
       saveUninitialized: true,
       cookie: {
         maxAge: 24 * 60 * 60 * 1000,
-        keys: [process.env.ACCESS_TOKEN_SECRET],
+        httpOnly: true,
+        secure: process.env.ENV === 'development' ? false : true,
+        //keys: [process.env.ACCESS_TOKEN_SECRET],
       },
     }),
   )

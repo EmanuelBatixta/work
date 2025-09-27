@@ -7,13 +7,13 @@ const util = {}
 util.verifyToken = (req, res, next) => {
   res.locals.loggedin = false
 
-  if (req.cookies.OrbiCRMs) {
+  if (req.cookies.OrbiJWT) {
     jwt.verify(
-      req.cookies.OrbiCRMs,
+      req.cookies.OrbiJWT,
       process.env.ACCESS_TOKEN_SECRET,
       function (err, accountData) {
         if (err) {
-          res.clearCookie('OrbiCRMs')
+          res.clearCookie('OrbiJWT')
           return res.status(401).send({ message: 'unauthorized' })
         }
         if (!res.locals.accountData) {
@@ -29,15 +29,15 @@ util.verifyToken = (req, res, next) => {
 }
 
 util.requireAuth = (req, res, next) => {
-  if (!req.cookies.OrbiCRMs) {
+  if (!req.cookies.OrbiJWT) {
     return res.status(401).send({ message: 'unauthorized' })
   }
   jwt.verify(
-    req.cookies.OrbiCRMs,
+    req.cookies.OrbiJWT,
     process.env.ACCESS_TOKEN_SECRET,
     function (err, accountData) {
       if (err) {
-        res.clearCookie('OrbiCRMs')
+        res.clearCookie('OrbiJWT')
         return res.status(401).send({ message: 'unauthorized' })
       }
       req.user = accountData
@@ -48,7 +48,7 @@ util.requireAuth = (req, res, next) => {
 
 util.authCheck = (req, res) => {
   if (req.user) {
-    res.redirect('/v1/api-docs')
+    res.redirect('/dashboard')
   }
 }
 
