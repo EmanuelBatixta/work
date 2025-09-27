@@ -25,7 +25,7 @@ main.use('/auth', authRoutes)
  * *****************/
 
 // Middleware to require authentication for all routes below
-// main.use(util.requireAuth)
+main.use(util.requireAuth)
 
 // Swagger API documentation route (protected)
 main.use('/api-docs', swaggerRoutes)
