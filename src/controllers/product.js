@@ -26,12 +26,16 @@ ctrl.updateProduct = async (req, res) => {
   try {
     const { id } = req.params
     const { productName, price, stock, value } = req.body
-    const result = await product.findByIdAndUpdate(id, {
-      productName,
-      price,
-      stock,
-      value,
-    })
+    const result = await product.findByIdAndUpdate(
+      id,
+      {
+        productName,
+        price,
+        stock,
+        value,
+      },
+      { new: true, timestamps: true },
+    )
     if (result) {
       res.status(201).json(result)
     } else {

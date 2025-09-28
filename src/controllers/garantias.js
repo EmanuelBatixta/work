@@ -58,15 +58,19 @@ ctrl.updateGarantias = async (req, res) => {
   try {
     const { id } = req.params
     const { fname, lname, keys, item, status, observations, sales } = req.body
-    const result = await garantias.findByIdAndUpdate(id, {
-      fname,
-      lname,
-      keys,
-      item,
-      status,
-      observations,
-      sales,
-    })
+    const result = await garantias.findByIdAndUpdate(
+      id,
+      {
+        fname,
+        lname,
+        keys,
+        item,
+        status,
+        observations,
+        sales,
+      },
+      { new: true, timestamps: true },
+    )
     if (result) {
       res.status(201).json(result)
     } else {
