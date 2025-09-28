@@ -34,6 +34,16 @@ const doc = {
           sales: { type: 'number', example: 3200 },
         },
       },
+      Product: {
+        type: 'object',
+        required: ['productName', 'price', 'value'],
+        properties: {
+          productName: { type: 'string', example: 'Air Conditioner' },
+          price: { type: 'number', example: 3200 },
+          stock: { type: 'integer', example: 10 },
+          value: { type: 'number', example: 2500 },
+        },
+      },
     },
   },
 }

@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import garantiasRoutes from './garantias.js'
 import swaggerRoutes from './swagger.js'
-//import userRoutes from './usuarios.js'
+import productRoutes from './product.js'
 import authRoutes from './auth.js'
 import util from '../utils/index.js'
 
@@ -25,13 +25,14 @@ main.use('/auth', authRoutes)
  * *****************/
 
 // Middleware to require authentication for all routes below
-// main.use(util.requireAuth)
+main.use(util.requireAuth)
 
 // Swagger API documentation route (protected)
 main.use('/api-docs', swaggerRoutes)
 
 // main.use(util.authCheck)
-// Warranty routes (protected)
+// Routes (protected)
 main.use('/warranty', garantiasRoutes)
+main.use('/product', productRoutes)
 
 export default main

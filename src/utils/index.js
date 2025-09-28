@@ -29,6 +29,7 @@ util.verifyToken = (req, res, next) => {
 }
 
 util.requireAuth = (req, res, next) => {
+  //console.log(req.cookies.OrbiJWT)
   if (!req.cookies.OrbiJWT) {
     return res.status(401).send({ message: 'unauthorized' })
   }

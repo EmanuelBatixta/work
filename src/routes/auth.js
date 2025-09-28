@@ -19,13 +19,20 @@ router.get('/login', (req, res) => {
 })
 
 // Route to log out the user and clear the session/cookie
-router.get('/logout', (req, res) => {
+router.get('/logout', async (req, res, next) => {
   /* 
     #swagger.tags = ['Auth']
     #swagger.security = [{"cookieAuth": []}]
   */
-  req.logout()
-  res.redirect('/v1/')
+  await req.logout((err) => {
+    if (err) {
+      console.log(err)
+      return next(err)
+    }
+    res.clearCookie('OrbiJWT')
+    res.clearCookie('OrbiCRM')
+    res.redirect('/v1/auth/login')
+  })
 })
 
 // Route to start Google OAuth authentication flow
@@ -49,7 +56,7 @@ router.get(
     failureRedirect: '/v1/auth/login',
   }),
   (req, res) => {
-    console.log(req.user.googleId)
+    //console.log(req.user.googleId)
     const payload = { user: req.user }
     const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '1d',
