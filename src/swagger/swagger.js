@@ -14,6 +14,10 @@ const doc = {
       url: 'https://termotec.onrender.com',
       description: 'Production server',
     },
+    {
+      url: 'http://termotec.onrender.com',
+      description: 'Try bug cors',
+    },
   ],
   components: {
     schemas: {
