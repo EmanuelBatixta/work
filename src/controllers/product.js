@@ -81,7 +81,7 @@ ctrl.deleteProduct = async (req, res) => {
   try {
     const result = await product.findByIdAndDelete(id)
     if (result) {
-      res.status(204).json({ message: 'Product deleted' })
+      res.status(204).send()
     } else {
       res.status(400).json({ error: 'Error deleting product', message: result })
     }
