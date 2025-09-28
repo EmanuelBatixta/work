@@ -52,19 +52,10 @@ router.get(
     #swagger.tags = ['Auth']
     #swagger.ignore = true
   */
-  passport.authenticate(
-    'google',
-    {
-      failureRedirect: '/v1/auth/login',
-      failWithError: true,
-      failureMessage: true,
-    },
-    (error, req, res) => {
-      if (error) {
-        return res.status(401).json({ message: error.message })
-      }
-    },
-  ),
+  passport.authenticate('google', {
+    failureRedirect: '/v1/auth/login',
+    failWithError: true,
+  }),
   (req, res) => {
     //console.log(req.user.googleId)
     const payload = { user: req.user }
