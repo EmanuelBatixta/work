@@ -20,15 +20,15 @@ main.get('/', async (req, res) => {
 // Authentication routes (login, logout, OAuth, etc.)
 main.use('/auth', authRoutes)
 
+// Swagger API documentation route (protected)
+main.use('/api-docs', swaggerRoutes)
+
 /* ******************
  * Protected Routes (require authentication)
  * *****************/
 
 // Middleware to require authentication for all routes below
 main.use(util.requireAuth)
-
-// Swagger API documentation route (protected)
-main.use('/api-docs', swaggerRoutes)
 
 // main.use(util.authCheck)
 // Routes (protected)
