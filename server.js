@@ -30,7 +30,7 @@ app
       cookie: {
         maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
-        secure: process.env.ENV === 'development' ? false : true,
+        secure: process.env.ENV === 'production' ? true : false,
         //keys: [process.env.ACCESS_TOKEN_SECRET],
       },
     }),
