@@ -31,7 +31,10 @@ util.verifyToken = (req, res, next) => {
 util.requireAuth = (req, res, next) => {
   //console.log(req.cookies.OrbiJWT)
   if (!req.cookies.OrbiJWT) {
-    return res.redirect('/v1/auth/google')
+    return res
+      .status(401)
+      .json({ message: 'unauthorizred' })
+      .redirect('/v1/auth/google')
   }
   jwt.verify(
     req.cookies.OrbiJWT,
