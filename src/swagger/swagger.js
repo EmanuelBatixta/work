@@ -20,6 +20,12 @@ const doc = {
     },
   ],
   components: {
+    securitySchemes: {
+      cookieAuth: {
+        type: 'apiKey',
+        in: 'cookie',
+        name: 'OrbiJWT', 
+      },
     schemas: {
       Warranty: {
         type: 'object',
