@@ -64,7 +64,7 @@ router.get(
     })
     res.cookie('OrbiJWT', token, {
       httpOnly: true,
-      secure: process.env.ENV === 'development' ? false : true,
+      secure: process.env.NODE_ENV === 'production' ? true : false,
       maxAge: 24 * 60 * 60 * 1000,
     })
     res.redirect('/v1/api-docs')
